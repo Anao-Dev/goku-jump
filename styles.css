@@ -1,0 +1,178 @@
+@import url('https://fonts.googleapis.com/css2?family=Press+Start+2P&display=swap');
+
+body {
+    margin: 0;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+    background: linear-gradient(135deg, #1e3c72 0%, #2a5298 100%);
+    font-family: 'Press Start 2P', cursive;
+    color: white;
+    overflow: hidden;
+}
+
+.game-container {
+    position: relative;
+    width: 800px;
+    height: 300px;
+    background: linear-gradient(135deg, #87ceeb 0%, #00bfff 100%);
+    border: 4px solid #000;
+    box-shadow: 0 0 20px rgba(0, 0, 0, 0.5);
+    overflow: hidden;
+    border-radius: 10px;
+}
+
+.sky {
+    position: absolute;
+    top: 0;
+    width: 100%;
+    height: 70%;
+    background: linear-gradient(to bottom, #87ceeb 0%, #00bfff 100%);
+}
+
+.cloud {
+    position: absolute;
+    width: 100px;
+    height: 60px;
+    background: white;
+    border-radius: 50%;
+    box-shadow: 0px 0px 20px rgba(0, 0, 0, 0.2);
+    opacity: 0.8;
+}
+
+#cloud1 {
+    top: 20px;
+    left: 150px;
+    animation: moveClouds 30s linear infinite;
+}
+
+#cloud2 {
+    top: 50px;
+    left: 400px;
+    animation: moveClouds 40s linear infinite;
+}
+
+@keyframes moveClouds {
+    0% {
+        transform: translateX(0);
+    }
+    100% {
+        transform: translateX(800px);
+    }
+}
+
+.ground {
+    position: absolute;
+    bottom: 0;
+    width: 100%;
+    height: 30%;
+    background: linear-gradient(to bottom, #228B22, #006400);
+}
+
+.goku {
+    position: absolute;
+    bottom: 30%; /* Ajustei para estar acima do chão */
+    left: 50px;
+    width: 50px;
+    height: 50px;
+    background-image: url('goku.png');
+    background-size: cover;
+    background-position: center;
+    animation: idleAnimation 1s steps(4) infinite;
+}
+
+.attack {
+    position: absolute;
+    bottom: 30%; /* Ajustei para estar acima do chão */
+    right: 0;
+    width: 30px;
+    height: 30px;
+    background-image: url('atack.png');
+    background-size: cover;
+    background-position: center;
+}
+
+@keyframes idleAnimation {
+    from {
+        background-position: 0;
+    }
+    to {
+        background-position: -200px; /* 4 frames * 50px each */
+    }
+}
+
+@keyframes jumpAnimation {
+    0%, 100% {
+        transform: translateY(0);
+    }
+    50% {
+        transform: translateY(-100px);
+    }
+}
+
+.goku.jumping {
+    animation: jumpAnimation 1s ease;
+}
+
+.score {
+    position: absolute;
+    top: 10px;
+    right: 10px;
+    font-size: 16px;
+}
+
+#start-button, #restart-button {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    padding: 10px 20px;
+    font-size: 16px;
+    background-color: #4CAF50;
+    color: white;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.3);
+    transition: background-color 0.3s;
+}
+
+#start-button:hover, #restart-button:hover {
+    background-color: #45a049;
+}
+
+.goku.transformation {
+    animation: transformationAnimation 3s forwards; /* Ensure it stays in the final state */
+}
+
+@keyframes transformationAnimation {
+    0% {
+        opacity: 1;
+        transform: scale(1);
+    }
+    50% {
+        opacity: 0.5;
+        transform: scale(1.5);
+    }
+    100% {
+        opacity: 1;
+        transform: scale(1);
+    }
+}
+
+.goku.super-saiyan {
+    background-image: url('ssj.png');
+    animation: none; /* Disable any animation after transformation */
+    position: absolute;
+    bottom: 27%; /* Ajustei para estar acima do chão */
+    left: 40px;
+    width: 99px;
+    height: 90px;
+    background-size: cover;
+    background-position: center;
+}
+
+.goku.jumping {
+    animation: jumpAnimation 1s ease;
+}
